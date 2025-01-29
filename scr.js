@@ -14,7 +14,7 @@ const visitBet261 = async () => {
     await page.goto("https://bet261.com", { waitUntil: "domcontentloaded" });
 
     // Prendre un screenshot
-    await page.screenshot({ path: "screenshot.png" });
+    //  await page.screenshot({ path: "screenshot.png" });
 
     await browser.close();
     return "Navigation réussie et capture enregistrée !";
