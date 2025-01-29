@@ -20,7 +20,7 @@ const visitBet261 = async (res) => {
       { waitUntil: "domcontentloaded" }
     );
 
-    // Chemin vers le fichier do.js
+    // Chemin vers le fichier do.js (relatif à l'emplacement de la fonction)
     const scriptPath = path.join(__dirname, "do.js");
 
     // Lire le fichier et l'injecter dans la page

@@ -6,7 +6,7 @@ const e = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  res.status(200).send("Scraping bet");
+  res.status(200).send("Scraping bet ...");
 });
 router.get("/scrape", async (req, res) => {
   try {
