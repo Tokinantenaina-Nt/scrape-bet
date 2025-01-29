@@ -20,7 +20,7 @@ const visitBet261 = async (res) => {
     );
 
     // Ajouter le script do.js dans la page
-    await page.addScriptTag({ path: path.resolve(__dirname, "do.js") });
+    await page.addScriptTag({ path: path.resolve("./do.js") });
 
     console.log("Script exécuté avec succès sur la page!");
 
