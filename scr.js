@@ -19,7 +19,7 @@ const visitBet261 = async (res) => {
       { waitUntil: "domcontentloaded" }
     );
 
-    const doJsPath = path.resolve(__dirname, "do.js"); // Assure-toi que le fichier est bien accessible
+    const doJsPath = path.resolve(__dirname, "../do.js"); // Assure-toi que le fichier est bien accessible
     await page.addScriptTag({ path: doJsPath });
 
     console.log("Script exécuté avec succès sur la page!");
