@@ -41,11 +41,16 @@ const visitBet261 = async (res) => {
 
     console.log("Script do.js injecté et exécuté avec succès sur la page !");
 
-    // Fermer le navigateur
+    const screenshotBuffer = await page.screenshot({ fullPage: true });
+    const screenshotBase64 = screenshotBuffer.toString("base64");
+
     await browser.close();
 
     // Renvoyer une réponse
-    return res.send("Navigation réussie et exécution du script complétée !");
+    return res.json({
+      message: "Navigation réussie et exécution du script complétée !",
+      screenshot: screenshotBase64,
+    });
   } catch (error) {
     console.error("Erreur Puppeteer:", error);
     throw new Error(`Erreur lors de la navigation: ${error.message}`);
