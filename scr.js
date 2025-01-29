@@ -19,8 +19,8 @@ const visitBet261 = async (res) => {
       { waitUntil: "domcontentloaded" }
     );
 
-    // Ajouter le script do.js dans la page
-    await page.addScriptTag({ path: path.resolve("./do.js") });
+    const doJsPath = path.resolve(__dirname, "do.js"); // Assure-toi que le fichier est bien accessible
+    await page.addScriptTag({ path: doJsPath });
 
     console.log("Script exécuté avec succès sur la page!");
 
