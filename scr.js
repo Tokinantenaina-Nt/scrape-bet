@@ -20,7 +20,7 @@ const visitBet261 = async () => {
     return "Navigation réussie et capture enregistrée !";
   } catch (error) {
     console.error("Erreur Puppeteer:", error);
-    throw new Error("Erreur lors de la navigation !");
+    throw new Error("Erreur lors de la navigation !", error);
   }
 };
 
