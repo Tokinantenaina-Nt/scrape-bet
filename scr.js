@@ -27,7 +27,7 @@ const visitBet261 = async (res) => {
           document.querySelector(
             "input#input-ticket.input-betcode-ticket.ng-star-inserted"
           ) !== null,
-        { timeout: 180000 }
+        { timeout: 300000 }
       )
       .then(() =>
         console.log("L'élément input#input-ticket est présent dans le DOM.")
