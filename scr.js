@@ -20,9 +20,13 @@ const visitBet261 = async (res) => {
     );
 
     // Attendre que l'élément input#input-ticket soit présent dans le DOM
+    await page;
     await page
-      .waitForSelector(
-        "input#input-ticket.input-betcode-ticket.ng-star-inserted",
+      .waitForFunction(
+        () =>
+          document.querySelector(
+            "input#input-ticket.input-betcode-ticket.ng-star-inserted"
+          ) !== null,
         { timeout: 180000 }
       )
       .then(() =>
