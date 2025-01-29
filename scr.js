@@ -13,26 +13,32 @@ const visitBet261 = async (res) => {
     });
     const page = await browser.newPage();
 
+    // Capturer les erreurs de la page
+    page.on("pageerror", (error) => {
+      console.error("Erreur sur la page:", error);
+    });
+
     // Naviguer vers la page cible
+    console.log("Navigation vers la page cible...");
     await page.goto(
       "https://bet261.mg/sports?betType=10001&timeFilter=All&tab=upcoming",
-      { waitUntil: "domcontentloaded" }
+      { waitUntil: "networkidle2" }
     );
 
     // Attendre que l'élément input#input-ticket soit présent dans le DOM
-
+    console.log("Attente de l'élément input#input-ticket...");
     await page
-      .waitForFunction(
-        () =>
-          document.querySelector(
-            "input#input-ticket.input-betcode-ticket.ng-star-inserted"
-          ) !== null,
-        { timeout: 300000 }
+      .waitForSelector(
+        "input#input-ticket.input-betcode-ticket.ng-star-inserted",
+        {
+          timeout: 300000, // 5 minutes
+        }
       )
       .then(() =>
         console.log("L'élément input#input-ticket est présent dans le DOM.")
       )
-      .catch(() => {
+      .catch((error) => {
+        console.error("Erreur lors de l'attente de l'élément:", error);
         throw new Error(
           "L'élément input#input-ticket n'a pas été trouvé dans le DOM."
         );
@@ -45,16 +51,11 @@ const visitBet261 = async (res) => {
 
     console.log("Script do.js injecté et exécuté avec succès sur la page !");
 
-    const screenshotBuffer = await page.screenshot({ fullPage: true });
-    const screenshotBase64 = screenshotBuffer.toString("base64");
-
+    // Fermer le navigateur
     await browser.close();
 
     // Renvoyer une réponse
-    return res.json({
-      message: "Navigation réussie et exécution du script complétée !",
-      screenshot: screenshotBase64,
-    });
+    return res.send("Navigation réussie et exécution du script complétée !");
   } catch (error) {
     console.error("Erreur Puppeteer:", error);
     throw new Error(`Erreur lors de la navigation: ${error.message}`);
