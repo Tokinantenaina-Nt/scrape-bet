@@ -1,10 +1,9 @@
 const puppeteer = require("puppeteer-core");
 const chromium = require("@sparticuz/chromium");
-const path = require("path");
-const fs = require("fs");
 
 const visitBet261 = async (res) => {
   try {
+    // Lancer le navigateur
     const browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
@@ -20,17 +19,18 @@ const visitBet261 = async (res) => {
       { waitUntil: "domcontentloaded" }
     );
 
-    // Chemin vers le fichier do.js (relatif à l'emplacement de la fonction)
-    const scriptPath = path.join(__dirname, "do.js");
+    // Injecter le script do.js depuis l'URL hébergée sur Netlify
+    await page.addScriptTag({
+      url: "https://scrape-bet.netlify.app/do.js",
+    });
 
-    // Lire le fichier et l'injecter dans la page
-    const scriptContent = fs.readFileSync(scriptPath, "utf8");
-    await page.addScriptTag({ content: scriptContent });
+    console.log("Script do.js injecté et exécuté avec succès sur la page !");
 
-    console.log("Script exécuté avec succès sur la page!");
-
+    // Fermer le navigateur
     await browser.close();
-    return res.send("Navigation réussie et exécution du script complétée!");
+
+    // Renvoyer une réponse
+    return res.send("Navigation réussie et exécution du script complétée !");
   } catch (error) {
     console.error("Erreur Puppeteer:", error);
     throw new Error(`Erreur lors de la navigation: ${error.message}`);
