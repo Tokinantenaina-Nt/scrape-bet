@@ -20,7 +20,7 @@ const visitBet261 = async (res) => {
     );
 
     // Attendre que l'élément input#input-ticket soit présent dans le DOM
-    await page;
+
     await page
       .waitForFunction(
         () =>
