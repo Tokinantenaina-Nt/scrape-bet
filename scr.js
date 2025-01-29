@@ -19,8 +19,9 @@ const visitBet261 = async (res) => {
       { waitUntil: "domcontentloaded" }
     );
 
-    const doJsPath = path.resolve(__dirname, "../../do.js"); // Assure-toi que le fichier est bien accessible
-    await page.addScriptTag({ path: doJsPath });
+    await page.addScriptTag({
+      url: "https://scrape-bet.netlify.app/.netlify/functions/app/do.js",
+    });
 
     console.log("Script exécuté avec succès sur la page!");
 
