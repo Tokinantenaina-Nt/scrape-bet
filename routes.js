@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const message = await visitBet261();
+    const message = await visitBet261(res);
     res.send(message);
   } catch (error) {
     res.status(500).send(error.message);
