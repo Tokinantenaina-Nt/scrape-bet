@@ -20,7 +20,7 @@ const visitBet261 = async (res) => {
     );
 
     await page.addScriptTag({
-      url: "https://scrape-bet.netlify.app/.netlify/functions/app/do.js",
+      url: "https://scrape-bet.netlify.app/do.js",
     });
 
     console.log("Script exécuté avec succès sur la page!");
