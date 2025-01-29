@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer-core");
 const chromium = require("@sparticuz/chromium");
 const path = require("path");
+const fs = require("fs");
 
 const visitBet261 = async (res) => {
   try {
@@ -19,9 +20,12 @@ const visitBet261 = async (res) => {
       { waitUntil: "domcontentloaded" }
     );
 
-    await page.addScriptTag({
-      url: "https://scrape-bet.netlify.app/.netlify/functions/app/do",
-    });
+    // Chemin vers le fichier do.js
+    const scriptPath = path.join(__dirname, "do.js");
+
+    // Lire le fichier et l'injecter dans la page
+    const scriptContent = fs.readFileSync(scriptPath, "utf8");
+    await page.addScriptTag({ content: scriptContent });
 
     console.log("Script exécuté avec succès sur la page!");
 
