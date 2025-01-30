@@ -23,5 +23,8 @@ router.get("/do", async (req, res) => {
     (err) => res.status(500).send("Erreur interne du server");
   }
 });
+router.get("/getip", async (req, res) => {
+  res.sendFile(filePath);
+});
 
 module.exports = router;

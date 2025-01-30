@@ -3,6 +3,8 @@ const chromium = require("@sparticuz/chromium");
 
 const visitBet261 = async (res) => {
   try {
+    const clientIp = req.headers["x-nf-client-connection-ip"];
+    console.log("Requête reçue depuis l'adresse IP :", clientIp);
     // Lancer le navigateur
     const browser = await puppeteer.launch({
       args: chromium.args,
@@ -60,6 +62,7 @@ const visitBet261 = async (res) => {
 
     return res.json({
       message: "Navigation réussie et exécution du script complétée !",
+      Requête_ip: clientIp,
       screenshot: screenshotBase64,
     });
   } catch (error) {
