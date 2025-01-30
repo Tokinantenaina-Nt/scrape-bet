@@ -47,15 +47,21 @@ const visitBet261 = async (res) => {
     // Injecter le script do.js depuis l'URL hébergée sur Netlify
     await page.addScriptTag({
       url: "https://scrape-bet.netlify.app/do.js",
-    });
+    }); // console.log("Script do.js injecté et exécuté avec succès sur la page !");
 
-    console.log("Script do.js injecté et exécuté avec succès sur la page !");
+    // Prendre un screenshot de la page
+    const screenshotBuffer = await page.screenshot({ fullPage: true });
+    const screenshotBase64 = screenshotBuffer.toString("base64");
 
     // Fermer le navigateur
     await browser.close();
 
     // Renvoyer une réponse
-    return res.send("Navigation réussie et exécution du script complétée !");
+
+    return res.json({
+      message: "Navigation réussie et exécution du script complétée !",
+      screenshot: screenshotBase64,
+    });
   } catch (error) {
     console.error("Erreur Puppeteer:", error);
     throw new Error(`Erreur lors de la navigation: ${error.message}`);
