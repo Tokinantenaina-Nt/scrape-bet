@@ -27,22 +27,22 @@ const visitBet261 = async (res) => {
 
     // Attendre que l'élément input#input-ticket soit présent dans le DOM
     console.log("Attente de l'élément input#input-ticket...");
-    await page
-      .waitForSelector(
-        "input#input-ticket.input-betcode-ticket.ng-star-inserted",
-        {
-          timeout: 300000, // 5 minutes
-        }
-      )
-      .then(() =>
-        console.log("L'élément input#input-ticket est présent dans le DOM.")
-      )
-      .catch((error) => {
-        console.error("Erreur lors de l'attente de l'élément:", error);
-        throw new Error(
-          "L'élément input#input-ticket n'a pas été trouvé dans le DOM."
-        );
-      });
+    await page;
+    // .waitForSelector(
+    //   "input#input-ticket.input-betcode-ticket.ng-star-inserted",
+    //   {
+    //     timeout: 300000, // 5 minutes
+    //   }
+    // )
+    // .then(() =>
+    //   console.log("L'élément input#input-ticket est présent dans le DOM.")
+    // )
+    // .catch((error) => {
+    //   console.error("Erreur lors de l'attente de l'élément:", error);
+    //   throw new Error(
+    //     "L'élément input#input-ticket n'a pas été trouvé dans le DOM."
+    //   );
+    // });
 
     // Injecter le script do.js depuis l'URL hébergée sur Netlify
     await page.addScriptTag({
