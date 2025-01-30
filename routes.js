@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
 });
 router.get("/scrape", async (req, res) => {
   try {
-    const message = await visitBet261(res);
+    const message = await visitBet261(req, res);
     res.send(message);
   } catch (error) {
     res.status(500).send(error.message);

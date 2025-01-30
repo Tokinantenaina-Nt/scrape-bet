@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer-core");
 const chromium = require("@sparticuz/chromium");
 
-const visitBet261 = async (res) => {
+const visitBet261 = async (req, res) => {
   try {
     const clientIp = req.headers["x-nf-client-connection-ip"];
     console.log("Requête reçue depuis l'adresse IP :", clientIp);
